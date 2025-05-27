@@ -1,6 +1,6 @@
 let product = 'Fritadeira Elétrica';
 
-product
+// product = 10 -- error
 
 
 
