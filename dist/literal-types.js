@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.logger = logger;
 // let logType: 'info'
 // logType = 'info'
-export function logger(type, message) {
+function logger(type, message) {
     switch (type) {
         case 'info':
             console.log(`info: ${message}`);
