@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.calculateTotal = calculateTotal;
 //TODO criar variavel do tipo SHoppingCart contendo CartItem
 const shoppingCart = {
     cartItems: [
@@ -10,7 +7,7 @@ const shoppingCart = {
     ]
 };
 //TODO função do tipo void para somar valores dos itens
-function calculateTotal(shoppingCart) {
+export function calculateTotal(shoppingCart) {
     const total = shoppingCart.cartItems.reduce((acc, item) => acc + item.price, 0);
     console.log(`Total do carrinho: R$ ${total.toFixed(2)}`);
 }
