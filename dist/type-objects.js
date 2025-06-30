@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.showProgrammer = showProgrammer;
 let programmer = {
     // let programmer: { name: string; age: number, skills: string[]} ={
     name: 'Kaio',
@@ -6,7 +9,7 @@ let programmer = {
 };
 programmer.name;
 programmer.age;
-export function showProgrammer(programmer) {
+function showProgrammer(programmer) {
     console.log(programmer);
 }
 showProgrammer(programmer);

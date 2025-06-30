@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.showMovies = showMovies;
 let movies = {
     movie1: {
         title: 'Vingadores',
@@ -20,7 +23,7 @@ let movies = {
         Director: 'Kendrick Lamar',
     },
 };
-export function showMovies(movies) {
+function showMovies(movies) {
     console.log(movies);
 }
 showMovies(movies);
