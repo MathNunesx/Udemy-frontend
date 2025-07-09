@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/basic-types/type-null-undefined.js';
+import { bootstrap } from './modules/basic-types/type-enum.js';
 export { bootstrap };
