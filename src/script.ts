@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/basic-types/interserction-type.js';
+import { bootstrap } from './modules/narrowing/type-guard.js';
 
 export { bootstrap };
