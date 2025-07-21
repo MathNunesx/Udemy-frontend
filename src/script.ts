@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/narrowing/interfaces.js';
+import { bootstrap } from './modules/narrowing/instanceof.js';
 
 export { bootstrap };
