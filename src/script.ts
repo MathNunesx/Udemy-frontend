@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/narrowing/type-assertion.js';
+import { bootstrap } from './modules/narrowing/interfaces.js';
 
 export { bootstrap };
