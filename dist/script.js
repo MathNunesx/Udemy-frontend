@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/narrowing/unknown.js';
+import { bootstrap } from './modules/narrowing/type-never.js';
 export { bootstrap };
