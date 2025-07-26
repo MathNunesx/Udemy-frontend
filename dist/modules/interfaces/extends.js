@@ -4,10 +4,16 @@ export const bootstrap = () => {
         fullName;
         email;
         skills;
-        constructor(fullName, email, skills) {
+        font;
+        colorScheme;
+        layout;
+        constructor(fullName, email, skills, font, colorScheme, layout) {
             this.fullName = fullName;
             this.email = email;
             this.skills = skills;
+            this.font = font;
+            this.colorScheme = colorScheme;
+            this.layout = layout;
         }
         addSkill(skill) {
             const initialLength = this.skills.length;
@@ -15,7 +21,7 @@ export const bootstrap = () => {
             return this.skills.length > initialLength;
         }
     }
-    const myResume = new MyResume('Mahtheus Rodrigues', 'matheus@gamil', []);
+    const myResume = new MyResume('Mahtheus Rodrigues', 'matheus@gamil', [], 'roboto', 'dark', 'one-column');
     myResume.addSkill({ name: 'Js', level: 'advanced' });
     myResume.addSkill({ name: 'Ts', level: 'advanced' });
     console.log(myResume);
