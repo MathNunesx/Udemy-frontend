@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/interfaces/interface.js';
+import { bootstrap } from './modules/interfaces/implements.js';
 export { bootstrap };
