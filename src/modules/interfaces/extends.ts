@@ -1,37 +1,5 @@
 export const bootstrap = (): void => {
   
-    //   declaration merging
-
-  interface Resume {
-    dateOfbirth?: Date;
-    sumary?: string;
-  }
-
-  //   declaration merging
-  
-    interface PersonalInfo {
-    fullName: string;
-    email: string;
-    ateOfbirth?: Date;
-    sumary?: string;
-  }
-
-  interface Theme {
-    font: 'roboto' | 'open sans';
-    colorScheme: 'light' | 'dark';
-    layout: 'one-column' | 'two-column';
-  }
-
-  interface Skill {
-    name: string;
-    level: 'beginner' | 'intermediate' | 'advanced';
-  }
-
-  interface Resume extends PersonalInfo, Theme {
-    addSkill?: (skill: Skill) => boolean;
-  }
-
-
   type Font = 'roboto' | 'open sans';
   type colorScheme = 'light' | 'dark';
   type layout = 'one-column' | 'two-column';
@@ -45,6 +13,7 @@ export const bootstrap = (): void => {
       public font: Font,
       public colorScheme: colorScheme,
       public layout: layout,
+      public dataOfbirth: Date
     ) {}
 
     addSkill(skill: Skill): boolean {
@@ -61,6 +30,7 @@ export const bootstrap = (): void => {
     'roboto',
     'dark',
     'one-column',
+    new Date('2004-01-03')
   );
 
   myResume.addSkill({ name: 'Js', level: 'advanced' });

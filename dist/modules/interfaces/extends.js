@@ -1,5 +1,4 @@
 export const bootstrap = () => {
-    //   declaration merging
     class MyResume {
         fullName;
         email;
@@ -7,13 +6,15 @@ export const bootstrap = () => {
         font;
         colorScheme;
         layout;
-        constructor(fullName, email, skills, font, colorScheme, layout) {
+        dataOfbirth;
+        constructor(fullName, email, skills, font, colorScheme, layout, dataOfbirth) {
             this.fullName = fullName;
             this.email = email;
             this.skills = skills;
             this.font = font;
             this.colorScheme = colorScheme;
             this.layout = layout;
+            this.dataOfbirth = dataOfbirth;
         }
         addSkill(skill) {
             const initialLength = this.skills.length;
@@ -21,7 +22,7 @@ export const bootstrap = () => {
             return this.skills.length > initialLength;
         }
     }
-    const myResume = new MyResume('Mahtheus Rodrigues', 'matheus@gamil', [], 'roboto', 'dark', 'one-column');
+    const myResume = new MyResume('Mahtheus Rodrigues', 'matheus@gamil', [], 'roboto', 'dark', 'one-column', new Date('2004-01-03'));
     myResume.addSkill({ name: 'Js', level: 'advanced' });
     myResume.addSkill({ name: 'Ts', level: 'advanced' });
     console.log(myResume);
