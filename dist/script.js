@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/interfaces/extends.js';
+import { bootstrap } from './modules/utility-types/omit-type.js';
 export { bootstrap };
