@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/utility-types/partial-type.js';
+import { bootstrap } from './modules/utility-types/required-type.js';
 
 export { bootstrap };
