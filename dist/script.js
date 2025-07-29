@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/utility-types/omit-type.js';
+import { bootstrap } from './modules/utility-types/partial-type.js';
 export { bootstrap };
