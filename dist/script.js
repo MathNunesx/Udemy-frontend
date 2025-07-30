@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/utility-types/readonly.js';
+import { bootstrap } from './modules/classes/static.js';
 export { bootstrap };
