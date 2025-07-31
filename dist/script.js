@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/classes/visability-operators.js';
+import { bootstrap } from './modules/classes/visibility-operators2.js';
 export { bootstrap };
