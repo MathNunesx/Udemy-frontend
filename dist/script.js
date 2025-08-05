@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/classes/visibility-operators2.js';
+import { bootstrap } from './modules/classes/abstratic.js';
 export { bootstrap };
