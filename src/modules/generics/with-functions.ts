@@ -12,17 +12,14 @@ export const bootstrap = (): void => {
   const y = processAndReturnGeneric(7, 'Y', true);
   console.log(y);
 
+  //   const x = processAndReturnGeneric('Star Wars');
+  //   console.log(x.toUpperCase());
 
-//   const x = processAndReturnGeneric('Star Wars');
-//   console.log(x.toUpperCase());
+  //   const y = processAndReturnGeneric(7);
+  //   console.log(y.toFixed(2));
 
-//   const y = processAndReturnGeneric(7);
-//   console.log(y.toFixed(2));
-
-
-// const z = processAndReturnGeneric(true);
-//   console.log(z)
-
+  // const z = processAndReturnGeneric(true);
+  //   console.log(z)
 
   //   const x = processAndReturn('Star Wars');
 

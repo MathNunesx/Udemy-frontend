@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/generics/with-functions.js';
+import { bootstrap } from './modules/generics/with-methods.js';
 export { bootstrap };
