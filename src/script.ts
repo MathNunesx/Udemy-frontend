@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/generics/with-alias-interface.js';
+import { bootstrap } from './modules/generics/with.promisses.js';
 
 export { bootstrap };
