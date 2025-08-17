@@ -39,4 +39,18 @@ export const bootstrap = () => {
         ],
     });
     document.body.appendChild(table);
+    const movies = [
+        { id: 1, title: 'Gente Grande', genre: 'Comedia', year: 2015 },
+        { id: 2, title: 'Vingadores', genre: 'Ação', year: 2012 },
+    ];
+    const tableMovies = createTable({
+        data: movies,
+        columns: [
+            { header: 'ID', accessor: (movie) => movie.id },
+            { header: 'Titulo', accessor: (movie) => movie.title },
+            { header: 'Gênero', accessor: (movie) => movie.genre },
+            { header: 'Ano', accessor: (movie) => movie.year },
+        ],
+    });
+    document.body.appendChild(tableMovies);
 };
