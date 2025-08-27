@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/generics/with-promisses-and-async.js';
+import { bootstrap } from './modules/generics/constraints-generics.js';
 export { bootstrap };
