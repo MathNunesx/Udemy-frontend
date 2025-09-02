@@ -7,15 +7,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 export const bootstrap = () => {
     function AddLogMethod(dateFormat, className, prefix) {
         return function AddLogMethod(constructor) {
-            console.log('Chegamos no decorador');
-            console.log(constructor);
-            return class extends constructor {
-                loggerInfo = () => {
-                    console.log(`${prefix} - ${className} - ${new Date().toLocaleString(dateFormat)} - ${JSON.stringify(this)}`);
-                };
+            constructor.prototype.loggerInfo = function () {
+                console.log(`${prefix} - ${className} - ${new Date().toLocaleString(dateFormat)} - ${JSON.stringify(this)}`);
             };
+            return constructor;
         };
     }
+    // }
+    // function AddLogMethod(dateFormat: string, className: string, prefix: string) {
+    //   return function AddLogMethod<T extends ConstructorFunction>(
+    //     constructor: T,
+    //   ) {
+    //     console.log('Chegamos no decorador');
+    //     console.log(constructor);
+    //     return class extends constructor {
+    //       loggerInfo = () => {
+    //         console.log(
+    //           `${prefix} - ${className} - ${new Date().toLocaleString(dateFormat)} - ${JSON.stringify(this)}`,
+    //         );
+    //       };
+    //     };
+    //   };
+    // }
     // class Product {
     //   name: string;
     //   loggerInfo!: () => void
@@ -33,7 +46,7 @@ export const bootstrap = () => {
         }
     };
     Person = __decorate([
-        AddLogMethod('pt-BR', 'Person', '[LOG')
+        AddLogMethod('pt-BR', 'Person', '[LOG]')
     ], Person);
     const person = new Person('Jean', 15);
     console.log(person);
