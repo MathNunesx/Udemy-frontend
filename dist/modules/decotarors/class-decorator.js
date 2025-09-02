@@ -5,16 +5,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 export const bootstrap = () => {
-    function AddLogMethod(constructor) {
-        console.log('Chegamos no decorador');
-        console.log(constructor);
-        return class extends constructor {
-            loggerInfo = () => {
-                console.log(`${new Date().toLocaleString('pt-BR')} - ${JSON.stringify(this)}`);
+    function AddLogMethod(dateFormat, className, prefix) {
+        return function AddLogMethod(constructor) {
+            console.log('Chegamos no decorador');
+            console.log(constructor);
+            return class extends constructor {
+                loggerInfo = () => {
+                    console.log(`${prefix} - ${className} - ${new Date().toLocaleString(dateFormat)} - ${JSON.stringify(this)}`);
+                };
             };
         };
     }
-    let Person = 
     // class Product {
     //   name: string;
     //   loggerInfo!: () => void
@@ -22,7 +23,7 @@ export const bootstrap = () => {
     //     this.name = name;
     //   }
     // }
-    class Person {
+    let Person = class Person {
         name;
         age;
         loggerInfo;
@@ -32,14 +33,7 @@ export const bootstrap = () => {
         }
     };
     Person = __decorate([
-        AddLogMethod
-        // class Product {
-        //   name: string;
-        //   loggerInfo!: () => void
-        //   constructor(name: string) {
-        //     this.name = name;
-        //   }
-        // }
+        AddLogMethod('pt-BR', 'Person', '[LOG')
     ], Person);
     const person = new Person('Jean', 15);
     console.log(person);
