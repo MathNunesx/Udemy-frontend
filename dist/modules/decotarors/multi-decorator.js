@@ -10,12 +10,10 @@ export const bootstrap = () => {
         permissions: ['User'],
     };
     function RateLimit(limitmiliseconds) {
-        console.log('Decorator RateLimit:', limitmiliseconds);
         return (target, propertykey, descriptor) => {
-            console.log(descriptor.value);
             const originalMethod = descriptor.value;
             let lastExe = 0;
-            descriptor.value = function () {
+            descriptor.value = function (...args) {
                 const now = Date.now();
                 if (now - lastExe < limitmiliseconds) {
                     console.error(`O método ${String(propertykey)} só pode ser chamado após ${limitmiliseconds}ms`);
@@ -23,10 +21,9 @@ export const bootstrap = () => {
                 }
                 else {
                     lastExe = now;
-                    return originalMethod.apply(this);
+                    return originalMethod.apply(this, args);
                 }
             };
-            console.log(descriptor.value);
             return descriptor;
         };
     }
@@ -41,16 +38,35 @@ export const bootstrap = () => {
         };
     }
     class ShoppingCart {
+        items;
+        constructor(items) {
+            this.items = items;
+        }
         getItems() {
             console.log('Retorna a relação de itens adicionados ao carrinho');
+        }
+        getItemsFiltered(search, caseIsensitive = true) {
+            const itemsFiltered = this.items.filter((item) => {
+                if (caseIsensitive) {
+                    return item.toLocaleLowerCase().includes(search.toLocaleLowerCase());
+                }
+                else {
+                    return item.includes(search);
+                }
+            });
+            return itemsFiltered;
         }
     }
     __decorate([
         CheckPermissions(['User', 'Admin', 'Super User']),
         RateLimit(3000)
     ], ShoppingCart.prototype, "getItems", null);
-    const shoppingCart = new ShoppingCart();
-    document.getElementById('getItens')?.addEventListener('click', () => {
-        shoppingCart.getItems();
+    __decorate([
+        CheckPermissions(['User', 'Admin', 'Super User'])
+    ], ShoppingCart.prototype, "getItemsFiltered", null);
+    const shoppingCart = new ShoppingCart(['Smartphone', 'Alexa']);
+    document.getElementById('getItems')?.addEventListener('click', () => {
+        const itemsFiltered = shoppingCart.getItemsFiltered('Clock', false);
+        console.warn(itemsFiltered);
     });
 };

@@ -5,17 +5,15 @@ export const bootstrap = (): void => {
   };
 
   function RateLimit(limitmiliseconds: number): MethodDecorator {
-    console.log('Decorator RateLimit:', limitmiliseconds);
     return <T>(
       target: Object,
       propertykey: string | symbol,
       descriptor: TypedPropertyDescriptor<T>,
     ) => {
-      console.log(descriptor.value);
-      const originalMethod = descriptor.value as () => T;
+      const originalMethod = descriptor.value as (...args: any[]) => T;
       let lastExe = 0;
 
-      descriptor.value = function (this: any) {
+      descriptor.value = function (this: any, ...args:[]) {
         const now = Date.now();
 
         if (now - lastExe < limitmiliseconds) {
@@ -25,11 +23,10 @@ export const bootstrap = (): void => {
           descriptor.value = function () {} as T;
         } else {
           lastExe = now;
-          return originalMethod.apply(this);
+          return originalMethod.apply(this, args);
         }
       } as T;
 
-      console.log(descriptor.value);
       return descriptor;
     };
   }
@@ -57,15 +54,29 @@ export const bootstrap = (): void => {
   }
 
   class ShoppingCart {
+    constructor(private readonly items: string[]) {}
     @CheckPermissions(['User', 'Admin', 'Super User'])
     @RateLimit(3000)
     getItems() {
       console.log('Retorna a relação de itens adicionados ao carrinho');
     }
+
+    @CheckPermissions(['User', 'Admin', 'Super User'])
+    getItemsFiltered(search: string, caseIsensitive: boolean = true): string[] {
+      const itemsFiltered = this.items.filter((item) => {
+        if (caseIsensitive) {
+          return item.toLocaleLowerCase().includes(search.toLocaleLowerCase());
+        } else {
+          return item.includes(search);
+        }
+      });
+      return itemsFiltered;
+    }
   }
 
-  const shoppingCart = new ShoppingCart();
-  document.getElementById('getItens')?.addEventListener('click', () => {
-    shoppingCart.getItems();
+  const shoppingCart = new ShoppingCart(['Smartphone', 'Alexa']);
+  document.getElementById('getItems')?.addEventListener('click', () => {
+    const itemsFiltered = shoppingCart.getItemsFiltered('Clock', false);
+    console.warn(itemsFiltered);
   });
 };
