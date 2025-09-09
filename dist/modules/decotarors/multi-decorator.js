@@ -66,7 +66,7 @@ export const bootstrap = () => {
     ], ShoppingCart.prototype, "getItemsFiltered", null);
     const shoppingCart = new ShoppingCart(['Smartphone', 'Alexa']);
     document.getElementById('getItems')?.addEventListener('click', () => {
-        const itemsFiltered = shoppingCart.getItemsFiltered('Clock', false);
+        const itemsFiltered = shoppingCart.getItemsFiltered('Smartphone', false);
         console.warn(itemsFiltered);
     });
 };
