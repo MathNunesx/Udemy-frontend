@@ -5,14 +5,19 @@ export const bootstrap = (): void => {
       propertyKey: string | symbol,
       descriprtor: TypedPropertyDescriptor<T>,
     ) {
-      console.log('desciptor set:', descriprtor.set);
-      console.log('desciptor get: ', descriprtor.get);
+      const originalMethod = descriprtor.set as (v: any) => void;
+      descriprtor.set = function (this: any, value: T) {
+        console.log('--->', value);
 
-      descriprtor.set = function () {
-        console.log('modifamos o comportamento do setter');
-      };
-      descriprtor.get = function <T>() {
-        return 'teste' as T;
+        if (typeof value === 'string') {
+          const newValue = value
+            .toLowerCase()
+            .split(' ')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+
+          originalMethod?.apply(this, [newValue]);
+        }
       };
       return descriprtor;
     };
@@ -32,6 +37,6 @@ export const bootstrap = (): void => {
   }
 
   const serviceOrder = new ServiceOrder();
-  serviceOrder.title = 'Implementar a pipeline de deploy do projeto x';
+  serviceOrder.title = 'ImplEmentar a pipEline dE deplOy do projEto x';
   console.warn(serviceOrder.title);
 };

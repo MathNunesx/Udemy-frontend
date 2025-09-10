@@ -7,13 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 export const bootstrap = () => {
     function CapitalizeText() {
         return function (target, propertyKey, descriprtor) {
-            console.log('desciptor set:', descriprtor.set);
-            console.log('desciptor get: ', descriprtor.get);
-            descriprtor.set = function () {
-                console.log('modifamos o comportamento do setter');
-            };
-            descriprtor.get = function () {
-                return 'teste';
+            const originalMethod = descriprtor.set;
+            descriprtor.set = function (value) {
+                console.log('--->', value);
+                if (typeof value === 'string') {
+                    const newValue = value
+                        .toLowerCase()
+                        .split(' ')
+                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                    originalMethod?.apply(this, [newValue]);
+                }
             };
             return descriprtor;
         };
@@ -31,6 +35,6 @@ export const bootstrap = () => {
         CapitalizeText()
     ], ServiceOrder.prototype, "title", null);
     const serviceOrder = new ServiceOrder();
-    serviceOrder.title = 'Implementar a pipeline de deploy do projeto x';
+    serviceOrder.title = 'ImplEmentar a pipEline dE deplOy do projEto x';
     console.warn(serviceOrder.title);
 };
