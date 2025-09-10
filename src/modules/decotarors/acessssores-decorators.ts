@@ -7,8 +7,6 @@ export const bootstrap = (): void => {
     ) {
       const originalMethod = descriprtor.set as (v: any) => void;
       descriprtor.set = function (this: any, value: T) {
-        console.log('--->', value);
-
         if (typeof value === 'string') {
           const newValue = value
             .toLowerCase()
@@ -23,10 +21,28 @@ export const bootstrap = (): void => {
     };
   }
 
+  function AddPreFix(prefix: string) {
+    return function <T>(
+      target: Object,
+      propertyKey: string | symbol,
+      descriprtor: TypedPropertyDescriptor<T>,
+    ) {
+      const originalMethod = descriprtor.get as () => T;
+
+      descriprtor.get = function (this: any): T {
+        const originalValue = originalMethod.apply(this);
+        return `${prefix} ${originalValue}` as T;
+      };
+
+      return descriprtor;
+    };
+  }
+
   class ServiceOrder {
     private _title: string = '';
 
     @CapitalizeText()
+    @AddPreFix('[Ordem de serviço]')
     set title(value: string) {
       this._title = value;
     }
@@ -37,6 +53,6 @@ export const bootstrap = (): void => {
   }
 
   const serviceOrder = new ServiceOrder();
-  serviceOrder.title = 'ImplEmentar a pipEline dE deplOy do projEto x';
+  serviceOrder.title = 'Refatorar o Código para que as funções de tratamento de dados sejam convertidas para decoradores';
   console.warn(serviceOrder.title);
 };

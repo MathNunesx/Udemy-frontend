@@ -9,7 +9,6 @@ export const bootstrap = () => {
         return function (target, propertyKey, descriprtor) {
             const originalMethod = descriprtor.set;
             descriprtor.set = function (value) {
-                console.log('--->', value);
                 if (typeof value === 'string') {
                     const newValue = value
                         .toLowerCase()
@@ -18,6 +17,16 @@ export const bootstrap = () => {
                         .join(' ');
                     originalMethod?.apply(this, [newValue]);
                 }
+            };
+            return descriprtor;
+        };
+    }
+    function AddPreFix(prefix) {
+        return function (target, propertyKey, descriprtor) {
+            const originalMethod = descriprtor.get;
+            descriprtor.get = function () {
+                const originalValue = originalMethod.apply(this);
+                return `${prefix} ${originalValue}`;
             };
             return descriprtor;
         };
@@ -32,9 +41,10 @@ export const bootstrap = () => {
         }
     }
     __decorate([
-        CapitalizeText()
+        CapitalizeText(),
+        AddPreFix('[Ordem de serviço]')
     ], ServiceOrder.prototype, "title", null);
     const serviceOrder = new ServiceOrder();
-    serviceOrder.title = 'ImplEmentar a pipEline dE deplOy do projEto x';
+    serviceOrder.title = 'Refatorar o Código para que as funções de tratamento de dados sejam convertidas para decoradores';
     console.warn(serviceOrder.title);
 };
