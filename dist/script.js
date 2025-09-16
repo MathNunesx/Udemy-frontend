@@ -1,2 +1,2 @@
-import { bootstrap } from './modules/decotarors/acessssores-decorators.js';
+import { bootstrap } from './modules/decotarors/property-decorator.js';
 export { bootstrap };
